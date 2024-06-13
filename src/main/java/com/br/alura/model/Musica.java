@@ -11,9 +11,17 @@ public class Musica {
     private String album;
 
     @ManyToOne
+    @JoinColumn(name = "artista_id")
     private Artista artista;
 
+
+
     public Musica(){}
+
+    public Musica(String nomeMusica, String album) {
+        this.titulo = nomeMusica;
+        this.album = album;
+    }
 
     public Long getId() {
         return id;
@@ -45,5 +53,11 @@ public class Musica {
 
     public void setArtista(Artista artista) {
         this.artista = artista;
+    }
+
+    @Override
+    public String toString() {
+        return  "titulo='" + titulo + '\'' +
+                ", album='" + album + '\'';
     }
 }

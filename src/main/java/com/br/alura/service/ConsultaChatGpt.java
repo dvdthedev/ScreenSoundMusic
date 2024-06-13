@@ -15,7 +15,7 @@ public class ConsultaChatGpt {
                 .build();
 
         var resposta = service.createCompletion(requisicao);
-        var resposta1 = resposta.getChoices().get(0).getText();
-        return (texto + resposta1);
+        return resposta.getChoices().get(0).getText();
+
     }
 }

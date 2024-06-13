@@ -23,6 +23,8 @@ public class Artista {
     @OneToMany(mappedBy = "artista", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Musica> musicasDoArtista = new ArrayList<>();
 
+
+
     public Artista(){}
 
     public Long getId() {
@@ -70,13 +72,14 @@ public class Artista {
     }
 
     public void setMusicasDoArtista(List<Musica> musicasDoArtista) {
+        musicasDoArtista.forEach(e -> e.setArtista(this));
         this.musicasDoArtista = musicasDoArtista;
     }
 
     public Artista(String nome, Integrantes integrantes, Genero genero) {
         this.nome = nome;
         this.integrantes = integrantes;
-        this.sobre = ConsultaChatGpt.obterTraducao(nome);
+        this.sobre = this.nome + ConsultaChatGpt.obterTraducao(nome);
         this.genero = genero;
     }
 
